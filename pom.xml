@@ -26,6 +26,9 @@
         <module>libsms-plivo</module>
         <module>libsms-plivo-common</module>
         <module>libsms-plivo-testkit</module>
+        <module>libsms-twilio</module>
+        <module>libsms-twilio-common</module>
+        <module>libsms-twilio-testkit</module>
     </modules>
 	
     <scm>
