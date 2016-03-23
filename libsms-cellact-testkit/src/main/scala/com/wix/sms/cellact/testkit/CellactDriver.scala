@@ -89,7 +89,7 @@ class CellactDriver(port: Int) {
     private def urlDecode(str: String): Map[String, String] = {
       val params = mutable.LinkedHashMap[String, JList[String]]()
       UrlEncodedParser.parse(str, mutableMapAsJavaMap(params))
-      params.mapValues( _(0) ).toMap
+      params.mapValues( _.head ).toMap
     }
   }
 }
