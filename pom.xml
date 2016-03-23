@@ -16,6 +16,9 @@
         <module>libsms-cellact</module>
         <module>libsms-cellact-common</module>
         <module>libsms-cellact-testkit</module>
+        <module>libsms-plivo</module>
+        <module>libsms-plivo-common</module>
+        <module>libsms-plivo-testkit</module>
     </modules>
 
     <developers>
