@@ -37,7 +37,7 @@ class CellactDriver(port: Int) {
   }
 
   class SendPlainCtx(credentials: Credentials, source: String, destPhone: String, text: String) {
-    val expectedPalo = CellactHelper.createPalo(
+    private val expectedPalo = CellactHelper.createPalo(
       credentials = credentials,
       sender = source,
       destPhone = destPhone,
