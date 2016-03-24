@@ -35,5 +35,6 @@
         <url>https://github.com/wix/libsms</url>
         <connection>scm:git:git://github.com/wix/libsms.git</connection>
         <developerConnection>scm:git:git@github.com:wix/libsms.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 </project>
