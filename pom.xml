@@ -29,6 +29,9 @@
         <module>libsms-twilio</module>
         <module>libsms-twilio-common</module>
         <module>libsms-twilio-testkit</module>
+        <module>libsms-clickatell</module>
+        <module>libsms-clickatell-common</module>
+        <module>libsms-clickatell-testkit</module>
     </modules>
 	
     <scm>
