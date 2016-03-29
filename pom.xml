@@ -32,6 +32,9 @@
         <module>libsms-clickatell</module>
         <module>libsms-clickatell-common</module>
         <module>libsms-clickatell-testkit</module>
+        <module>libsms-bulksms</module>
+        <module>libsms-bulksms-common</module>
+        <module>libsms-bulksms-testkit</module>
     </modules>
 	
     <scm>
