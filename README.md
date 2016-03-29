@@ -3,6 +3,7 @@ A simple Java/Scala outgoing SMS [SPI](https://en.wikipedia.org/wiki/Service_pro
 * [Twilio](https://www.twilio.com/)
 * [Plivo](https://www.plivo.com/)
 * [Clickatell](https://www.clickatell.com/)
+* [BulkSMS](http://www.bulksms.com/)
 * [Cellact](http://www.cellact.co.il/)
 
 This library is actively used by [Wix.com](http://www.wix.com/) to deliver mission-critical text messages to your favorite restaurants.
