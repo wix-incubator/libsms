@@ -35,6 +35,9 @@
         <module>libsms-bulksms</module>
         <module>libsms-bulksms-common</module>
         <module>libsms-bulksms-testkit</module>
+        <module>libsms-nexmo</module>
+        <module>libsms-nexmo-common</module>
+        <module>libsms-nexmo-testkit</module>
     </modules>
 	
     <scm>
