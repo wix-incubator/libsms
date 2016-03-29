@@ -51,12 +51,10 @@ class ClickatellSmsGateway(requestFactory: HttpRequestFactory,
       val responseJson = extractAndCloseResponse(httpResponse)
       val response = responseParser.parse(responseJson)
 
-      response.error match {
-        case Some(error) => throw new SmsErrorException(s"http status = ${httpResponse.getStatusCode}, code = ${error.code}, description = ${error.description}")
-        case None => response.data match {
-          case Some(data) => data.message.head.apiMessageId
-          case None => throw new SmsErrorException(s"http status = ${httpResponse.getStatusCode}")
-        }
+      (response.error, response.data) match {
+        case (None, Some(data)) => data.message.head.apiMessageId
+        case (None, None) => throw new SmsErrorException(s"http status = ${httpResponse.getStatusCode}")
+        case (Some(error), _) => throw new SmsErrorException(s"http status = ${httpResponse.getStatusCode}, code = ${error.code}, description = ${error.description}")
       }
     } match {
       case Return(apiMessageId) => Return(apiMessageId)
