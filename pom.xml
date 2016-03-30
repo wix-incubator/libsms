@@ -38,6 +38,9 @@
         <module>libsms-nexmo</module>
         <module>libsms-nexmo-common</module>
         <module>libsms-nexmo-testkit</module>
+        <module>libsms-cm</module>
+        <module>libsms-cm-common</module>
+        <module>libsms-cm-testkit</module>
     </modules>
 	
     <scm>
