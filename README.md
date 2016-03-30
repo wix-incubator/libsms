@@ -5,6 +5,7 @@ A simple Java/Scala outgoing SMS [SPI](https://en.wikipedia.org/wiki/Service_pro
 * [Clickatell](https://www.clickatell.com/)
 * [BulkSMS](http://www.bulksms.com/)
 * [Nexmo](https://www.nexmo.com/)
+* [CM](https://www.cmtelecom.com/)
 * [Cellact](http://www.cellact.co.il/)
 
 This library is actively used by [Wix.com](http://www.wix.com/) to deliver mission-critical text messages to your favorite restaurants.
