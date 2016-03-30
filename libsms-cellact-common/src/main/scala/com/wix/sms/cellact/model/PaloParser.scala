@@ -6,7 +6,7 @@ import javax.xml.bind.{JAXBContext, Marshaller}
 class PaloParser {
   val context = JAXBContext.newInstance(classOf[Palo])
   val marshaller = context.createMarshaller()
-  marshaller.setProperty(Marshaller.JAXB_FRAGMENT, true);
+  marshaller.setProperty(Marshaller.JAXB_FRAGMENT, true)
 
   val unmarshaller = context.createUnmarshaller()
 
