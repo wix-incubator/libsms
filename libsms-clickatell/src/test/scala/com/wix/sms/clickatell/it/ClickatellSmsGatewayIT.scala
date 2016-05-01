@@ -5,7 +5,6 @@ import com.wix.sms.SmsErrorException
 import com.wix.sms.clickatell.testkit.ClickatellDriver
 import com.wix.sms.clickatell.{ClickatellSmsGateway, Credentials}
 import com.wix.sms.model.{Sender, SmsGateway}
-import com.wix.sms.testkit.TwitterTryMatchers._
 import org.specs2.mutable.SpecWithJUnit
 import org.specs2.specification.Scope
 
@@ -62,8 +61,8 @@ class ClickatellSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beSuccessful(
-        value = ===(someMessageId)
+      ) must beASuccessfulTry(
+        check = ===(someMessageId)
       )
     }
 
@@ -85,9 +84,9 @@ class ClickatellSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beFailure[String, SmsErrorException](
-        msg = contain(someErrorCode) and contain(someErrorDescription)
-      )
+      ) must beAFailedTry.like {
+        case e: SmsErrorException => e.message must (contain(someErrorCode) and contain(someErrorDescription))
+      }
     }
 
     "gracefully fail on invalid credentials" in new Ctx {
@@ -102,9 +101,9 @@ class ClickatellSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beFailure[String, SmsErrorException](
-        msg = contain("401") // "Unauthorized" HTTP status code
-      )
+      ) must beAFailedTry.like {
+        case e: SmsErrorException => e.message must contain("401") // "Unauthorized" HTTP status code
+      }
     }
   }
 

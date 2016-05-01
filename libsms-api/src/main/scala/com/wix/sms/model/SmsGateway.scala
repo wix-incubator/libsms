@@ -6,7 +6,7 @@
 \*                |/                                                 */
 package com.wix.sms.model
 
-import com.twitter.util.Try
+import scala.util.Try
 
 /**
  * The Fax trait, which allows sending fax documents and querying their status.

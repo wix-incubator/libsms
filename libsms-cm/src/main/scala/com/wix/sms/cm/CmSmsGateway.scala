@@ -3,12 +3,12 @@ package com.wix.sms.cm
 import java.io.IOException
 
 import com.google.api.client.http._
-import com.twitter.util.{Return, Throw, Try}
 import com.wix.sms.cm.model.MessagesParser
 import com.wix.sms.model.{Sender, SmsGateway}
 import com.wix.sms.{CommunicationException, SmsErrorException, SmsException}
 
 import scala.concurrent.duration.Duration
+import scala.util.{Failure, Success, Try}
 
 object Endpoints {
   val production = "https://sgw01.cm.nl/gateway.ashx"
@@ -52,10 +52,10 @@ class CmSmsGateway(requestFactory: HttpRequestFactory,
         throw new SmsErrorException(responseText)
       }
     } match {
-      case Return(msgId) => Return(msgId)
-      case Throw(e: SmsException) => Throw(e)
-      case Throw(e: IOException) => Throw(new CommunicationException(e.getMessage, e))
-      case Throw(e) => Throw(new SmsErrorException(e.getMessage, e))
+      case Success(msgId) => Success(msgId)
+      case Failure(e: SmsException) => Failure(e)
+      case Failure(e: IOException) => Failure(new CommunicationException(e.getMessage, e))
+      case Failure(e) => Failure(new SmsErrorException(e.getMessage, e))
     }
   }
 

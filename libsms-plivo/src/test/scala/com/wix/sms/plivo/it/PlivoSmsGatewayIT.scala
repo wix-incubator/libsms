@@ -5,7 +5,6 @@ import com.wix.sms.SmsErrorException
 import com.wix.sms.model.{Sender, SmsGateway}
 import com.wix.sms.plivo.testkit.PlivoDriver
 import com.wix.sms.plivo.{Credentials, PlivoSmsGateway}
-import com.wix.sms.testkit.TwitterTryMatchers._
 import org.specs2.mutable.SpecWithJUnit
 import org.specs2.specification.Scope
 
@@ -63,8 +62,8 @@ class PlivoSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beSuccessful(
-        value = ===(someMessageId)
+      ) must beASuccessfulTry(
+        check = ===(someMessageId)
       )
     }
 
@@ -84,9 +83,9 @@ class PlivoSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beFailure[String, SmsErrorException](
-        msg = contain(someError)
-      )
+      ) must beAFailedTry.like {
+        case e: SmsErrorException => e.message must contain(someError)
+      }
     }
   }
 

@@ -41,10 +41,5 @@
     </parent>
 
     <dependencies>
-        <dependency>
-            <groupId>com.twitter</groupId>
-            <artifactId>util-core_${scala.dependencies.version}</artifactId>
-            <version>6.23.0</version>
-        </dependency>
     </dependencies>
 </project>

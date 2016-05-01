@@ -5,7 +5,6 @@ import com.wix.sms.SmsErrorException
 import com.wix.sms.cm.testkit.CmDriver
 import com.wix.sms.cm.{CmSmsGateway, Credentials}
 import com.wix.sms.model.{Sender, SmsGateway}
-import com.wix.sms.testkit.TwitterTryMatchers._
 import org.specs2.mutable.SpecWithJUnit
 import org.specs2.specification.Scope
 
@@ -59,8 +58,8 @@ class CmSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beSuccessful(
-        value = ===("")
+      ) must beASuccessfulTry(
+        check = ===("")
       )
     }
 
@@ -76,7 +75,9 @@ class CmSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beFailure[String, SmsErrorException]()
+      ) must beAFailedTry(
+        check = beAnInstanceOf[SmsErrorException]
+      )
     }
 
     "gracefully fail on generic error" in new Ctx {
@@ -95,9 +96,9 @@ class CmSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beFailure[String, SmsErrorException](
-        msg = ===(someError)
-      )
+      ) must beAFailedTry.like{
+        case e: SmsErrorException => e.message must beEqualTo(someError)
+      }
     }
   }
 

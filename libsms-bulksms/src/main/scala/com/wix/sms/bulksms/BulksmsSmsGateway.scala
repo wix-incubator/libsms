@@ -3,13 +3,13 @@ package com.wix.sms.bulksms
 import java.io.IOException
 
 import com.google.api.client.http._
-import com.twitter.util.{Return, Throw, Try}
 import com.wix.sms.bulksms.model.{ResponseParser, RoutingGroups, StatusCodes}
 import com.wix.sms.model.{Sender, SmsGateway}
 import com.wix.sms.{CommunicationException, SmsErrorException, SmsException}
 
 import scala.collection.JavaConversions._
 import scala.concurrent.duration.Duration
+import scala.util.{Failure, Success, Try}
 
 object Endpoints {
   val production = "https://bulksms.vsms.net/eapi/"
@@ -55,10 +55,10 @@ class BulksmsSmsGateway(requestFactory: HttpRequestFactory,
         case (code, _) => throw new SmsErrorException(s"code = $code, description = ${response.description}")
       }
     } match {
-      case Return(batchId) => Return(batchId)
-      case Throw(e: SmsException) => Throw(e)
-      case Throw(e: IOException) => Throw(new CommunicationException(e.getMessage, e))
-      case Throw(e) => Throw(new SmsErrorException(e.getMessage, e))
+      case Success(batchId) => Success(batchId)
+      case Failure(e: SmsException) => Failure(e)
+      case Failure(e: IOException) => Failure(new CommunicationException(e.getMessage, e))
+      case Failure(e) => Failure(new SmsErrorException(e.getMessage, e))
     }
   }
 

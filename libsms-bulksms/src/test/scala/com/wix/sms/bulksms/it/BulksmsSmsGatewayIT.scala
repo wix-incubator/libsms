@@ -6,7 +6,6 @@ import com.wix.sms.bulksms.model.{RoutingGroups, StatusCodes}
 import com.wix.sms.bulksms.testkit.BulksmsDriver
 import com.wix.sms.bulksms.{BulksmsSmsGateway, Credentials}
 import com.wix.sms.model.{Sender, SmsGateway}
-import com.wix.sms.testkit.TwitterTryMatchers._
 import org.specs2.mutable.SpecWithJUnit
 import org.specs2.specification.Scope
 
@@ -67,8 +66,8 @@ class BulksmsSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beSuccessful(
-        value = ===(someMessageId)
+      ) must beASuccessfulTry(
+        check = ===(someMessageId)
       )
     }
 
@@ -89,9 +88,9 @@ class BulksmsSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beFailure[String, SmsErrorException](
-        msg = contain(StatusCodes.insufficientCredits) and contain(insufficientCreditsDescription)
-      )
+      ) must beAFailedTry.like {
+        case e: SmsErrorException => e.message must (contain(StatusCodes.insufficientCredits) and contain(insufficientCreditsDescription))
+      }
     }
   }
 

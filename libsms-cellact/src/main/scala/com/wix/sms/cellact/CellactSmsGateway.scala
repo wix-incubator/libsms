@@ -3,13 +3,13 @@ package com.wix.sms.cellact
 import java.io.IOException
 
 import com.google.api.client.http.{GenericUrl, HttpRequestFactory, HttpResponse, UrlEncodedContent}
-import com.twitter.util.{Return, Throw, Try}
 import com.wix.sms.cellact.model._
 import com.wix.sms.model.{Sender, SmsGateway}
 import com.wix.sms.{CommunicationException, SmsErrorException, SmsException}
 
 import scala.collection.JavaConversions._
 import scala.concurrent.duration.Duration
+import scala.util.{Failure, Success, Try}
 
 object Endpoints {
   val production = "https://cellactpro.net/GlobalSms/ExternalClient/GlobalAPI.asp"
@@ -54,10 +54,10 @@ class CellactSmsGateway(requestFactory: HttpRequestFactory,
         case errorCode => throw new SmsErrorException(message = s"code = $errorCode, message = ${response.RESULTMESSAGE}")
       }
     } match {
-      case Return(blmj) => Return(blmj)
-      case Throw(e: SmsException) => Throw(e)
-      case Throw(e: IOException) => Throw(new CommunicationException(e.getMessage, e))
-      case Throw(e) => Throw(new SmsErrorException(e.getMessage, e))
+      case Success(blmj) => Success(blmj)
+      case Failure(e: SmsException) => Failure(e)
+      case Failure(e: IOException) => Failure(new CommunicationException(e.getMessage, e))
+      case Failure(e) => Failure(new SmsErrorException(e.getMessage, e))
     }
   }
 

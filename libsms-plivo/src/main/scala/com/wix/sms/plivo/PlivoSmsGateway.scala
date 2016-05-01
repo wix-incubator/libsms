@@ -4,12 +4,12 @@ import java.io.IOException
 
 import com.google.api.client.http._
 import com.google.api.client.util.Base64
-import com.twitter.util.{Return, Throw, Try}
 import com.wix.sms.model.{Sender, SmsGateway}
 import com.wix.sms.plivo.model.{SendMessageRequestParser, SendMessageResponseParser}
 import com.wix.sms.{CommunicationException, SmsErrorException, SmsException}
 
 import scala.concurrent.duration.Duration
+import scala.util.{Failure, Success, Try}
 
 object Endpoints {
   val production = "https://api.plivo.com/v1/"
@@ -62,10 +62,10 @@ class PlivoSmsGateway(requestFactory: HttpRequestFactory,
         case None => response.message_uuid.get.head
       }
     } match {
-      case Return(msgUuid) => Return(msgUuid)
-      case Throw(e: SmsException) => Throw(e)
-      case Throw(e: IOException) => Throw(new CommunicationException(e.getMessage, e))
-      case Throw(e) => Throw(new SmsErrorException(e.getMessage, e))
+      case Success(msgUuid) => Success(msgUuid)
+      case Failure(e: SmsException) => Failure(e)
+      case Failure(e: IOException) => Failure(new CommunicationException(e.getMessage, e))
+      case Failure(e) => Failure(new SmsErrorException(e.getMessage, e))
     }
   }
 

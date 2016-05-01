@@ -6,7 +6,6 @@ import com.wix.sms.model.{Sender, SmsGateway}
 import com.wix.sms.nexmo.model.Statuses
 import com.wix.sms.nexmo.testkit.NexmoDriver
 import com.wix.sms.nexmo.{Credentials, NexmoSmsGateway}
-import com.wix.sms.testkit.TwitterTryMatchers._
 import org.specs2.mutable.SpecWithJUnit
 import org.specs2.specification.Scope
 
@@ -64,8 +63,8 @@ class NexmoSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beSuccessful(
-        value = ===(someMessageId)
+      ) must beASuccessfulTry(
+        check = ===(someMessageId)
       )
     }
 
@@ -81,9 +80,9 @@ class NexmoSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beFailure[String, SmsErrorException](
-        msg = contain(Statuses.invalidCredentials)
-      )
+      ) must beAFailedTry.like {
+        case e: SmsErrorException => e.message must contain(Statuses.invalidCredentials)
+      }
     }
   }
 

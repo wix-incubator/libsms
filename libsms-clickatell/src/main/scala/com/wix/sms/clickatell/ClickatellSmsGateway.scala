@@ -3,12 +3,12 @@ package com.wix.sms.clickatell
 import java.io.IOException
 
 import com.google.api.client.http._
-import com.twitter.util.{Return, Throw, Try}
 import com.wix.sms.clickatell.model.{Headers, MessageRequestParser, MessageResponseParser, Versions}
 import com.wix.sms.model.{Sender, SmsGateway}
 import com.wix.sms.{CommunicationException, SmsErrorException, SmsException}
 
 import scala.concurrent.duration.Duration
+import scala.util.{Failure, Success, Try}
 
 object Endpoints {
   val production = "https://api.clickatell.com/rest/"
@@ -57,10 +57,10 @@ class ClickatellSmsGateway(requestFactory: HttpRequestFactory,
         case (Some(error), _) => throw new SmsErrorException(s"http status = ${httpResponse.getStatusCode}, code = ${error.code}, description = ${error.description}")
       }
     } match {
-      case Return(apiMessageId) => Return(apiMessageId)
-      case Throw(e: SmsException) => Throw(e)
-      case Throw(e: IOException) => Throw(new CommunicationException(e.getMessage, e))
-      case Throw(e) => Throw(new SmsErrorException(e.getMessage, e))
+      case Success(apiMessageId) => Success(apiMessageId)
+      case Failure(e: SmsException) => Failure(e)
+      case Failure(e: IOException) => Failure(new CommunicationException(e.getMessage, e))
+      case Failure(e) => Failure(new SmsErrorException(e.getMessage, e))
     }
   }
 

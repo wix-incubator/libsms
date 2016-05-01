@@ -4,13 +4,13 @@ import java.io.IOException
 
 import com.google.api.client.http._
 import com.google.api.client.util.Base64
-import com.twitter.util.{Return, Throw, Try}
 import com.wix.sms.model.{Sender, SmsGateway}
 import com.wix.sms.twilio.model.SmsResponseParser
 import com.wix.sms.{CommunicationException, SmsErrorException, SmsException}
 
 import scala.collection.JavaConversions._
 import scala.concurrent.duration.Duration
+import scala.util.{Failure, Success, Try}
 
 object Endpoints {
   val production = "https://api.twilio.com/2010-04-01/"
@@ -60,10 +60,10 @@ class TwilioSmsGateway(requestFactory: HttpRequestFactory,
         case None => throw new SmsErrorException(s"code = ${response.code.orNull}, message = ${response.message.orNull}")
       }
     } match {
-      case Return(sid) => Return(sid)
-      case Throw(e: SmsException) => Throw(e)
-      case Throw(e: IOException) => Throw(new CommunicationException(e.getMessage, e))
-      case Throw(e) => Throw(new SmsErrorException(e.getMessage, e))
+      case Success(sid) => Success(sid)
+      case Failure(e: SmsException) => Failure(e)
+      case Failure(e: IOException) => Failure(new CommunicationException(e.getMessage, e))
+      case Failure(e) => Failure(new SmsErrorException(e.getMessage, e))
     }
   }
 

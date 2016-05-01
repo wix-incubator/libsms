@@ -3,7 +3,6 @@ package com.wix.sms.twilio.it
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.wix.sms.SmsErrorException
 import com.wix.sms.model.{Sender, SmsGateway}
-import com.wix.sms.testkit.TwitterTryMatchers._
 import com.wix.sms.twilio.testkit.TwilioDriver
 import com.wix.sms.twilio.{Credentials, TwilioSmsGateway}
 import org.specs2.mutable.SpecWithJUnit
@@ -63,8 +62,8 @@ class TwilioSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beSuccessful(
-        value = ===(someMessageId)
+      ) must beASuccessfulTry(
+        check = ===(someMessageId)
       )
     }
 
@@ -86,9 +85,9 @@ class TwilioSmsGatewayIT extends SpecWithJUnit {
         sender = someSender,
         destPhone = someDestPhone,
         text = someText
-      ) must beFailure[String, SmsErrorException](
-        msg = contain(someCode) and contain(someMessage)
-      )
+      ) must beAFailedTry.like {
+        case e: SmsErrorException => e.message must (contain(someCode) and contain(someMessage))
+      }
     }
   }
 

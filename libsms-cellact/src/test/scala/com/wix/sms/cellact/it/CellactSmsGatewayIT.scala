@@ -8,8 +8,6 @@ import com.wix.sms.model.{Sender, SmsGateway}
 import org.specs2.mutable.SpecWithJUnit
 import org.specs2.specification.Scope
 
-import com.wix.sms.testkit.TwitterTryMatchers._
-
 class CellactSmsGatewayIT extends SpecWithJUnit {
   private val cellactPort = 10007
 
@@ -65,8 +63,8 @@ class CellactSmsGatewayIT extends SpecWithJUnit {
         ),
         destPhone = someDestPhone,
         text = someText
-      ) must beSuccessful(
-        value = ===(someMessageId)
+      ) must beASuccessfulTry(
+        check = ===(someMessageId)
       )
     }
 
@@ -90,9 +88,9 @@ class CellactSmsGatewayIT extends SpecWithJUnit {
         ),
         destPhone = someDestPhone,
         text = someText
-      ) must beFailure[String, SmsErrorException](
-        msg = contain(someReturnCode) and contain(someReturnMessage)
-      )
+      ) must beAFailedTry.like {
+        case e: SmsErrorException => e.message must (contain(someReturnCode) and contain(someReturnMessage))
+      }
     }
   }
 

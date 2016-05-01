@@ -3,13 +3,13 @@ package com.wix.sms.nexmo
 import java.io.IOException
 
 import com.google.api.client.http._
-import com.twitter.util.{Return, Throw, Try}
 import com.wix.sms.model.{Sender, SmsGateway}
 import com.wix.sms.nexmo.model.{ResponseParser, Statuses}
 import com.wix.sms.{CommunicationException, SmsErrorException, SmsException}
 
 import scala.collection.JavaConversions._
 import scala.concurrent.duration.Duration
+import scala.util.{Failure, Success, Try}
 
 object Endpoints {
   val production = "https://rest.nexmo.com/"
@@ -54,10 +54,10 @@ class NexmoSmsGateway(requestFactory: HttpRequestFactory,
         case (errorStatus, None) => throw new SmsErrorException(s"status = $errorStatus")
       }
     } match {
-      case Return(apiMessageId) => Return(apiMessageId)
-      case Throw(e: SmsException) => Throw(e)
-      case Throw(e: IOException) => Throw(new CommunicationException(e.getMessage, e))
-      case Throw(e) => Throw(new SmsErrorException(e.getMessage, e))
+      case Success(apiMessageId) => Success(apiMessageId)
+      case Failure(e: SmsException) => Failure(e)
+      case Failure(e: IOException) => Failure(new CommunicationException(e.getMessage, e))
+      case Failure(e) => Failure(new SmsErrorException(e.getMessage, e))
     }
   }
 
