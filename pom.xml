@@ -2,9 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.wix.sms</groupId>
     <artifactId>libsms-all</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Wix SMS SPI aggregator</name>
     <description>Wix SMS SPI modules pom</description>
@@ -15,6 +13,15 @@
         <version>1.1.0-SNAPSHOT</version>
 		<relativePath>libsms-parent</relativePath>
     </parent>
+
+
+    <scm>
+        <url>https://github.com/wix/libsms</url>
+        <connection>scm:git:git://github.com/wix/libsms.git</connection>
+        <developerConnection>scm:git:git@github.com:wix/libsms.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
 
     <modules>
         <module>libsms-parent</module>
@@ -42,11 +49,4 @@
         <module>libsms-cm-common</module>
         <module>libsms-cm-testkit</module>
     </modules>
-	
-    <scm>
-        <url>https://github.com/wix/libsms</url>
-        <connection>scm:git:git://github.com/wix/libsms.git</connection>
-        <developerConnection>scm:git:git@github.com:wix/libsms.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 </project>
