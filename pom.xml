@@ -27,26 +27,5 @@
         <module>libsms-parent</module>
         <module>libsms-api</module>
         <module>libsms-testkit</module>
-        <module>libsms-cellact</module>
-        <module>libsms-cellact-common</module>
-        <module>libsms-cellact-testkit</module>
-        <module>libsms-plivo</module>
-        <module>libsms-plivo-common</module>
-        <module>libsms-plivo-testkit</module>
-        <module>libsms-twilio</module>
-        <module>libsms-twilio-common</module>
-        <module>libsms-twilio-testkit</module>
-        <module>libsms-clickatell</module>
-        <module>libsms-clickatell-common</module>
-        <module>libsms-clickatell-testkit</module>
-        <module>libsms-bulksms</module>
-        <module>libsms-bulksms-common</module>
-        <module>libsms-bulksms-testkit</module>
-        <module>libsms-nexmo</module>
-        <module>libsms-nexmo-common</module>
-        <module>libsms-nexmo-testkit</module>
-        <module>libsms-cm</module>
-        <module>libsms-cm-common</module>
-        <module>libsms-cm-testkit</module>
     </modules>
 </project>
