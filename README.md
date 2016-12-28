@@ -22,19 +22,6 @@ Of course, you'll need to have an account with the SMS provider. Sending text me
 
 For actual code, see the [IT](https://en.wikipedia.org/wiki/Integration_testing) suite that accompanies each SMS provider implementation.
 
-## Installation
-### Maven users
-
-Add this dependency to your project's POM:
-
-```xml
-<dependency>
-  <groupId>com.wix.sms</groupId>
-  <artifactId>libsms-all</artifactId>
-  <version>1.0.0</version>
-</dependency>
-```
-
 ## Reporting Issues
 Please use [the issue tracker](https://github.com/wix/libsms/issues) to report general issues related to this library.
 
