@@ -6,13 +6,13 @@ Actively used by [Wix.com](http://www.wix.com/) to deliver mission-critical text
 ## Supported SMS providers
 | SMS Provider                              | Project                                                       |
 | ----------------------------------------- | ------------------------------------------------------------- |
-| [BulkSMS](http://www.bulksms.com/)        | [libpay-bulksms](https://github.com/wix/libpay-bulksms)       |
-| [Cellact](http://www.cellact.co.il/)      | [libpay-cellact](https://github.com/wix/libpay-cellact)       |
-| [Clickatell](https://www.clickatell.com/) | [libpay-clickatell](https://github.com/wix/libpay-clickatell) |
-| [CM](https://www.cmtelecom.com/)          | [libpay-cm](https://github.com/wix/libpay-cm)                 |
-| [Nexmo](https://www.nexmo.com/)           | [libpay-nexmo](https://github.com/wix/libpay-nexmo)           |
-| [Plivo](https://www.plivo.com/)           | [libpay-plivo](https://github.com/wix/libpay-plivo)           |
-| [Twilio](https://www.twilio.com/)         | [libpay-twilio](https://github.com/wix/libpay-twilio)         |
+| [BulkSMS](http://www.bulksms.com/)        | [libsms-bulksms](https://github.com/wix/libsms-bulksms)       |
+| [Cellact](http://www.cellact.co.il/)      | [libsms-cellact](https://github.com/wix/libsms-cellact)       |
+| [Clickatell](https://www.clickatell.com/) | [libsms-clickatell](https://github.com/wix/libsms-clickatell) |
+| [CM](https://www.cmtelecom.com/)          | [libsms-cm](https://github.com/wix/libsms-cm)                 |
+| [Nexmo](https://www.nexmo.com/)           | [libsms-nexmo](https://github.com/wix/libsms-nexmo)           |
+| [Plivo](https://www.plivo.com/)           | [libsms-plivo](https://github.com/wix/libsms-plivo)           |
+| [Twilio](https://www.twilio.com/)         | [libsms-twilio](https://github.com/wix/libsms-twilio)         |
 
 
 ## Usage
