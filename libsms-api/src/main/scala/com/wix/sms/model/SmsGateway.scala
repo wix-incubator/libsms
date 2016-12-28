@@ -8,21 +8,31 @@ package com.wix.sms.model
 
 import scala.util.Try
 
-/**
- * The Fax trait, which allows sending fax documents and querying their status.
- * Fax providers should subclass and implement this trait.
- */
+/** The Outgoing SMS gateway SPI. */
 trait SmsGateway {
-  /** @return the SMS gateway's unique ID. */
-  def getId: String
+  /**
+    * Sends a single plain (non-Unicode) SMS.
+    *
+    * @param sender      The SMS source.
+    * @param destPhone   Destination phone number in E.164 format, e.g. +12125551234
+    * @param text        The plain (non-Unicode) text to send.
+    * @return a gateway-specific unique message identifier on success (or empty string if no such id exists),
+    *         or any kind of SmsException on error
+    *
+    * @see <a href="https://en.wikipedia.org/wiki/Short_Message_Service#Message_size">Message size</a>
+    */
+  def sendPlain(sender: Sender, destPhone: String, text: String): Try[String]
 
   /**
-   * Sends a single plain (non-unicode) SMS.
-   * @param sender      The SMS source.
-   * @param destPhone   Destination phone number in E.164 format, e.g. +12125551234
-   * @param text        The text to send.
-   * @return a gateway-specific unique message identifier on success (or empty string if no such id exists), or any kind
-   *         of SmsException on error
-   */
-  def sendPlain(sender: Sender, destPhone: String, text: String): Try[String]
+    * Sends a single Unicode SMS.
+    *
+    * @param sender      The SMS source.
+    * @param destPhone   Destination phone number in E.164 format, e.g. +12125551234
+    * @param text        The Unicode text to send.
+    * @return a gateway-specific unique message identifier on success (or empty string if no such id exists),
+    *         or any kind of SmsException on error
+    *
+    * @see <a href="https://en.wikipedia.org/wiki/Short_Message_Service#Message_size">Message size</a>
+    */
+  def sendUnicode(sender: Sender, destPhone: String, text: String): Try[String]
 }
