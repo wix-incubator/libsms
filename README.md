@@ -1,5 +1,5 @@
 # libsms
-A simple Java/Scala outgoing SMS [SPI](https://en.wikipedia.org/wiki/Service_provider_interface)
+A simple Java/Scala outgoing SMS [SPI](https://en.wikipedia.org/wiki/Service_provider_interface).
 
 Actively used by [Wix.com](http://www.wix.com/) to deliver mission-critical text messages to your favorite restaurants.
 
