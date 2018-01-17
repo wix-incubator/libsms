@@ -13,8 +13,8 @@
 
     <parent>
         <groupId>com.wix</groupId>
-        <artifactId>wix-oss-parent</artifactId>
-        <version>1.1.0</version>
+        <artifactId>wix-oss-scala-parent</artifactId>
+        <version>0.47.0</version>
         <relativePath />
     </parent>
 
@@ -64,12 +64,11 @@
 
 
     <properties>
-        <com.wix.hoopoe.http.version>0.0.1</com.wix.hoopoe.http.version>
         <com.google.http.client.version>1.21.0</com.google.http.client.version>
-        <org.json4js.version>3.3.0</org.json4js.version>
+        <org.json4js.version>3.4.2</org.json4js.version>
 
-        <java.source.version>1.7</java.source.version>
-        <java.target.version>1.7</java.target.version>
+        <java.source.version>1.8</java.source.version>
+        <java.target.version>1.8</java.target.version>
     </properties>
 
     <build>
@@ -87,7 +86,7 @@
                         <configuration>
                             <rules>
                                 <enforceBytecodeVersion>
-                                    <maxJdkVersion>1.7</maxJdkVersion>
+                                    <maxJdkVersion>1.8</maxJdkVersion>
                                 </enforceBytecodeVersion>
                             </rules>
                             <fail>true</fail>
