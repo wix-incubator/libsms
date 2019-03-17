@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.wix.sms</groupId>
         <artifactId>libsms-parent</artifactId>
-        <version>1.1.0</version>
+        <version>1.2.0-SNAPSHOT</version>
         <relativePath>../libsms-parent</relativePath>
     </parent>
 
