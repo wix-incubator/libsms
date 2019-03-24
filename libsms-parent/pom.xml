@@ -4,7 +4,7 @@
 
     <groupId>com.wix.sms</groupId>
     <artifactId>libsms-parent</artifactId>
-    <version>1.3.0</version>
+    <version>1.4.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Wix SMS SPI parent pom</name>
     <description>Wix SMS SPI parent pom</description>
@@ -46,7 +46,7 @@
 
     <scm>
         <url>https://github.com/wix/libsms</url>
-        <tag>1.3.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <issueManagement>
